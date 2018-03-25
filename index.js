@@ -4,6 +4,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
+let ToDo,
+    Rele_Number,
+    Number,
+    Name;
+
 app.use(bodyParser.json());
 app.use(basicAuth({
   users: { 'admin': 'secret'}
@@ -20,6 +25,17 @@ app.post('/', function(req, res){
     console.log('Rele_Number: ' + JSON.stringify(req.body.result.parameters.Rele_Number));
     console.log('Number: ' + JSON.stringify(req.body.result.parameters.Number));
     console.log('Name: ' + JSON.stringify(req.body.result.parameters.Name));
+    ToDo = JSON.stringify(req.body.result.parameters.ToDo);
+    Rele_Number = JSON.stringify(req.body.result.parameters.Rele_Number);
+    Number = JSON.stringify(req.body.result.parameters.Number);
+    Name = JSON.stringify(req.body.result.parameters.Name);
+    io.emit('ToDo', ToDo);
+    io.emit('Rele_Number', Rele_Number);
+    io.emit('Number', Number);
+    io.emit('Name', Name);
+
+    response = `Luce Accesa`;
+    res.send(JSON.stringify({ "speech": response, "displayText": response}));
 });
 
 http.listen(process.env.PORT || 3000, function(){
