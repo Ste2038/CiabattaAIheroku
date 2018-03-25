@@ -15,7 +15,7 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
     console.log('POST / ', JSON.stringify(req.body));
-    console.log('Parametri: ' + JSON.stringify(req.body.result.parameter));
+    console.log('Parametri: ' + JSON.stringify(req.body.result.parameters));
 });
 
 http.listen(process.env.PORT || 3000, function(){
