@@ -29,11 +29,12 @@ app.post('/', function(req, res){
     Rele_Number = JSON.stringify(req.body.result.parameters.Rele_Number);
     Number = JSON.stringify(req.body.result.parameters.Number);
     Name = JSON.stringify(req.body.result.parameters.Name);
-    io.emit('ToDo', ToDo);
+    
     io.emit('Rele_Number', Rele_Number);
     io.emit('Number', Number);
     io.emit('Name', Name);
-
+    io.emit('ToDo', ToDo);
+    
     response = `Luce Accesa`;
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
 });
