@@ -34,8 +34,8 @@ app.post('/', function(req, res){
     io.emit('Number', Number);
     io.emit('Name', Name);
     io.emit('ToDo', ToDo);
-    
-    response = `Luce Accesa`;
+
+    response = `${Name} Acceso`;
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
 });
 
