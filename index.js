@@ -34,8 +34,14 @@ app.post('/', function(req, res){
     io.emit('Number', Number);
     io.emit('Name', Name);
     io.emit('ToDo', ToDo);
+    let _Name = JSON.parse(Name);
 
-    response = `${Name} Acceso`;
+    if (JSON.parse(ToDo) == "accendi"){
+        response = `${_Name} Acceso`;
+    }
+    else if (JSON.parse(ToDo) == "spegni"){
+        response = `${_Name} Spento`;
+    }
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
 });
 
