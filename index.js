@@ -5,9 +5,7 @@ var io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
 let ToDo,
-    Rele_Number,
-    Number,
-    Name;
+    ToControl;
 
 app.use(bodyParser.json());
 app.use(basicAuth({
@@ -21,26 +19,19 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
     console.log('POST / ', JSON.stringify(req.body));
     console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
-    console.log('ToDo: ' + JSON.stringify(req.body.result.parameters.ToDo));
-    console.log('Rele_Number: ' + JSON.stringify(req.body.result.parameters.Rele_Number));
-    console.log('Number: ' + JSON.stringify(req.body.result.parameters.Number));
-    console.log('Name: ' + JSON.stringify(req.body.result.parameters.Name));
-    ToDo = JSON.stringify(req.body.result.parameters.ToDo);
-    Rele_Number = JSON.stringify(req.body.result.parameters.Rele_Number);
-    Number = JSON.stringify(req.body.result.parameters.Number);
-    Name = JSON.stringify(req.body.result.parameters.Name);
-    
-    io.emit('Rele_Number', Rele_Number);
-    io.emit('Number', Number);
-    io.emit('Name', Name);
+    console.log('ToDo: ' + JSON.stringify(req.body.queryResult.parameters.ToDo));
+    console.log('ToControl: ' + JSON.stringify(req.body.queryResult.parameters.ToControl));
+    ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
+    ToControl = JSON.stringify(req.body.queryResult.parameters.ToControl);
+        
     io.emit('ToDo', ToDo);
-    let _Name = JSON.parse(Name);
+    io.emit('ToControl', ToControl);
 
-    if (JSON.parse(ToDo) == "accendi"){
-        response = `${_Name} Acceso`;
+    if (JSON.parse(ToDo) == "Accendi"){
+        response = `${JSON.parse(ToControl)} acceso`;
     }
-    else if (JSON.parse(ToDo) == "spegni"){
-        response = `${_Name} Spento`;
+    else if (JSON.parse(ToDo) == "Spegni"){
+        response = `${JSON.parse(ToControl)} spento`;
     }
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
 });
