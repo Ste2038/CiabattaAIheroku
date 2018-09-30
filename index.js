@@ -20,7 +20,7 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
     console.log('POST / ', JSON.stringify(req.body));
-    console.log('Parametri: ' + JSON.stringify(req.body.result.parameters));
+    console.log('Parametri: ' + JSON.stringify(req.body.object.queryResult.parameters));
     console.log('ToDo: ' + JSON.stringify(req.body.result.parameters.ToDo));
     console.log('Rele_Number: ' + JSON.stringify(req.body.result.parameters.Rele_Number));
     console.log('Number: ' + JSON.stringify(req.body.result.parameters.Number));
