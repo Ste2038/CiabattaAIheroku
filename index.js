@@ -24,8 +24,8 @@ app.post('/', function(req, res){
     ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
     ToControl = JSON.stringify(req.body.queryResult.parameters.ToControl);
         
-    io.emit('ToDo', ToDo);
     io.emit('ToControl', ToControl);
+    io.emit('ToDo', ToDo);
 
     if (JSON.parse(ToDo) == "Accendi"){
         response = `${JSON.parse(ToControl)} acceso`;
