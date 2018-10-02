@@ -53,6 +53,7 @@ app.post('/', function(req, res){
             io.emit('Modalita', Modalita);
 
             response = `Modalità ${JSON.parse(Modalita)} impostata`;
+            res.send(JSON.stringify({ "speech": response, "displayText": response}));
         break;
 
         case "Led":
@@ -62,6 +63,7 @@ app.post('/', function(req, res){
             io.emit('Color', Color);
 
             response = `Colore ${JSON.parse(Color)} impostato`;
+            res.send(JSON.stringify({ "speech": response, "displayText": response}));
         break;
     }
 });
