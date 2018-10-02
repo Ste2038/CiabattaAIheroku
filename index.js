@@ -25,7 +25,7 @@ app.post('/', function(req, res){
     console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
 
     Intent = JSON.stringify(req.body.queryResult.intent.displayName);
-    
+    console.log(Intent);
     switch (Intent){
         case "Controllo":
             ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
