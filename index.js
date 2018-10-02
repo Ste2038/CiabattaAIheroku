@@ -51,6 +51,8 @@ app.post('/', function(req, res){
             console.log(Modalita);
 
             io.emit('Modalita', Modalita);
+
+            response = `Modalità ${JSON.parse(Modalita)} impostata`;
         break;
 
         case "Led":
@@ -58,6 +60,8 @@ app.post('/', function(req, res){
             console.log(Color);
 
             io.emit('Color', Color);
+
+            response = `Colore ${JSON.parse(Color)} impostato`;
         break;
     }
 });
