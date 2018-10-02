@@ -5,8 +5,8 @@ var io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
 //Variabili Entities
-let Intent;
-    Modalita;
+let Intent,
+    Modalita,
     ToDo,
     ToControl;
 
