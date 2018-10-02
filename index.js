@@ -54,7 +54,7 @@ app.post('/', function(req, res){
         break;
 
         case "Led":
-            Color = JSON.stringify(req.body.queryResult.parameters.color);
+            Color = JSON.stringify(req.body.queryResult.parameters.Color);
             console.log(Color);
 
             io.emit('Color', Color);
