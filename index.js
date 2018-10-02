@@ -4,8 +4,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
-let ToDo,
+//Variabili Entities
+let Intent;
+    Modalita;
+    ToDo,
     ToControl;
+
 
 app.use(bodyParser.json());
 app.use(basicAuth({
@@ -19,21 +23,38 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
     console.log('POST / ', JSON.stringify(req.body));
     console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
-    console.log('ToDo: ' + JSON.stringify(req.body.queryResult.parameters.ToDo));
-    console.log('ToControl: ' + JSON.stringify(req.body.queryResult.parameters.ToControl));
-    ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
-    ToControl = JSON.stringify(req.body.queryResult.parameters.ToControl);
-        
-    io.emit('ToControl', ToControl);
-    io.emit('ToDo', ToDo);
 
-    if (JSON.parse(ToDo) == "Accendi"){
-        response = `${JSON.parse(ToControl)} acceso`;
+    Intent = JSON.stringify(req.body.queryResult.intent.displayName);
+    
+    switch (Intent){
+        case "Controllo":
+            ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
+            ToControl = JSON.stringify(req.body.queryResult.parameters.ToControl);
+            console.log(ToDo);
+            console.log(ToControl);
+            
+            io.emit('ToControl', ToControl);
+            io.emit('ToDo', ToDo);
+
+            if (JSON.parse(ToDo) == "Accendi"){
+                response = `${JSON.parse(ToControl)} acceso`;
+            }
+            else if (JSON.parse(ToDo) == "Spegni"){
+                response = `${JSON.parse(ToControl)} spento`;
+            }
+            res.send(JSON.stringify({ "speech": response, "displayText": response}));
+        break;
+        
+        case "Modalita":
+            Modalita = JSON.stringify(req.body.queryResult.parameters.Modalita);
+            console.log(Modalita);
+
+            io.emit('Modalita', Modalita);
+        break;
+
+        case "Led":
+        break;
     }
-    else if (JSON.parse(ToDo) == "Spegni"){
-        response = `${JSON.parse(ToControl)} spento`;
-    }
-    res.send(JSON.stringify({ "speech": response, "displayText": response}));
 });
 
 http.listen(process.env.PORT || 3000, function(){
