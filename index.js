@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 //Variabili Entities
 let Intent,
+    Color,
     Modalita,
     ToDo,
     ToControl;
@@ -53,6 +54,10 @@ app.post('/', function(req, res){
         break;
 
         case "Led":
+            Color = JSON.stringify(req.body.queryResult.parameters.color);
+            console.log(Color);
+
+            io.emit('Color', Color);
         break;
     }
 });
