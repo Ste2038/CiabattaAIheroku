@@ -25,25 +25,66 @@ app.post('/', function(req, res){
     console.log('POST / ', JSON.stringify(req.body));
     console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
 
-    Intent = JSON.stringify(req.body.queryResult.intent.displayName);
-    console.log(Intent);
-    switch (JSON.parse(Intent)){
+    Intent = JSON.parse(JSON.stringify(req.body.queryResult.intent.displayName));
+    console.log("Intent" + Intent);
+
+    switch (Intent){
         case "Controllo":
             ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
             ToControl = JSON.stringify(req.body.queryResult.parameters.ToControl);
-            console.log(ToDo);
-            console.log(ToControl);
+            console.log("ToDo" + ToDo);
+            console.log("ToControl" + ToControl);
             
             io.emit('ToControl', ToControl);
             io.emit('ToDo', ToDo);
 
             if (JSON.parse(ToDo) == "Accendi"){
-                response = `${JSON.parse(ToControl)} acceso`;
+                switch(JSON.parse(ToControl)){
+                    case "Led":
+                        response = `Ho acceso i led`;
+                    break;
+                    
+                    case "Stereo":
+                        response = `Ho acceso lo stereo`;
+                    break;
+
+                    case "Monitor":
+                        response = `Ho acceso i Monitor`;
+                    break;
+
+                    case "Computer":
+                        response = `Ho acceso il computer`;
+                    break;
+
+                    case "Stampamte":
+                        response = `Ho acceso la stampante`;
+                    break; 
+                }
             }
             else if (JSON.parse(ToDo) == "Spegni"){
-                response = `${JSON.parse(ToControl)} spento`;
+                switch(JSON.parse(ToControl)){
+                    case "Led":
+                        response = `Ho spento i led`;
+                    break;
+                    
+                    case "Stereo":
+                        response = `Ho spento lo stereo`;
+                    break;
+
+                    case "Monitor":
+                        response = `Ho spento i Monitor`;
+                    break;
+
+                    case "Computer":
+                        response = `Ho spento il computer`;
+                    break;
+
+                    case "Stampamte":
+                        response = `Ho spento la stampante`;
+                    break; 
+                }
             }
-            res.send(JSON.stringify({ "speech": response, "displayText": response}));
+            res.send(JSON.stringify({"speech": response, "displayText": response}));
         break;
         
         case "Modalita":
