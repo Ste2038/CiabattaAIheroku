@@ -39,9 +39,9 @@ app.post('/', function(req, res){
             io.emit('ToDo', ToDo);
 
             if (JSON.parse(ToDo) == "Accendi"){
-                console.log("Accendi");
                 switch(JSON.parse(ToControl)){
                     case "Led":
+                        console.log("led");
                         response = `Ho acceso i led`;
                     break;
                     
