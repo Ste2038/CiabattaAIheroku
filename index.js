@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 }));*/
 
 app.get('/', function(req, res){
-    res.send(<h1>Stefano Giulianelli</h1>);
+    res.send('<h1>Stefano Giulianelli</h1>');
 });
 
 app.post('/', function(req, res){
