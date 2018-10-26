@@ -18,7 +18,7 @@ app.use(basicAuth({
 }));
 
 app.get('/', function(req, res){
-    res.send(MainWeb.html);
+    res.send(/web/Home.html);
 });
 
 app.post('/', function(req, res){
