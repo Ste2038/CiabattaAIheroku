@@ -13,12 +13,12 @@ let Intent,
 
 
 app.use(bodyParser.json());
-/*app.use(basicAuth({
+app.use(basicAuth({
   users: { 'admin': 'secret'}
-}));*/
+}));
 
 app.get('/', function(req, res){
-    res.send(web/Home.html);
+    res.send(/web/Home.html);
 });
 
 app.post('/', function(req, res){
