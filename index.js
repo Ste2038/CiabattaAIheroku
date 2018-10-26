@@ -18,7 +18,7 @@ app.use(basicAuth({
 }));
 
 app.get('/', function(req, res){
-    res.send("ciao");
+    res.send(MainWeb.html);
 });
 
 app.post('/', function(req, res){
