@@ -29,7 +29,7 @@ app.post('/', function(req, res){
 
     switch (Intent){
         case "Default Welcome Intent":
-        res.send(JSON.stringify({ "fulfillmentText": 'ciao'}));
+        res.send(JSON.stringify({ "fulfillmentText": 'Ciao!'}));
         break;
 
         case "Controllo":
