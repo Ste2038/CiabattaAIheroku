@@ -50,7 +50,7 @@ app.post('/', function(req, res){
             io.emit('ToDo', ToDo);
 
             if (JSON.parse(ToDo) == "Accendi"){
-                if (ReleStat[ToControl]){
+                if (ReleStat[ToControl] == true){
                     switch(JSON.parse(ToControl)){
                         case "Led":
                             response = `Led già accesi`;
@@ -98,7 +98,7 @@ app.post('/', function(req, res){
                 }
             }
             else if (JSON.parse(ToDo) == "Spegni"){
-                if(ReleStat[ToControl]){
+                if(ReleStat[ToControl] == true){
                     switch(JSON.parse(ToControl)){
                         case "Led":
                             response = `Ho spento i led`;
