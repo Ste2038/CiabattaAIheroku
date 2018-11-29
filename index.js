@@ -134,7 +134,11 @@ http.listen(port, function(){
         console.log('|_______________________________________________________________|');
 
         socket.on('changeReleNum', function(msgObj){
-            console.log(msgObj);
+            console.log("changeReleNum: " + msgObj);
+        });
+
+        socket.on('changeRelStatus', function(msgObj){
+            console.log("changeRelStatus: " + msgObj);
         });
     })
 });
