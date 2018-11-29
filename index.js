@@ -50,6 +50,7 @@ app.post('/', function(req, res){
             io.emit('ToDo', ToDo);
 
             if (JSON.parse(ToDo) == "Accendi"){
+                console.log(ReleStat[ToControl]);
                 if (ReleStat[ToControl] == true){
                     switch(JSON.parse(ToControl)){
                         case "Led":
