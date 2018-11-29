@@ -2,6 +2,7 @@ var app = require('express')();
 var basicAuth = require('express-basic-auth');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 //Variabili Entities
@@ -112,6 +113,14 @@ app.post('/', function(req, res){
     }
 });
 
-http.listen(process.env.PORT || 3000, function(){
-    console.log('listening');
+http.listen(port, function(){
+    console.log('Listening on port ' + port);
+
+    io.on('connection', function(socket){
+        console.log('User Connected!');
+
+        socket.on('ciao', function(msgObj){
+            console.log(msgObj);
+        });
+    })
 });
