@@ -50,49 +50,99 @@ app.post('/', function(req, res){
             io.emit('ToDo', ToDo);
 
             if (JSON.parse(ToDo) == "Accendi"){
-                switch(JSON.parse(ToControl)){
-                    case "Led":
-                        response = `Ho acceso i led`;
-                    break;
-                    
-                    case "Stereo":
-                        response = `Ho acceso lo stereo`;
-                    break;
+                if (ReleStat[ToControl]){
+                    switch(JSON.parse(ToControl)){
+                        case "Led":
+                            response = `Led già accesi`;
+                        break;
+                        
+                        case "Stereo":
+                            response = `Stereo già acceso`;
+                        break;
 
-                    case "Monitor":
-                        response = `Ho acceso i monitor`;
-                    break;
+                        case "Monitor":
+                            response = `Monitor già accesi`;
+                        break;
 
-                    case "Computer":
-                        response = `Ho acceso il computer`;
-                    break;
+                        case "Computer":
+                            response = `Computer già acceso`;
+                        break;
 
-                    case "Stampamte":
-                        response = `Ho acceso la stampante`;
-                    break; 
+                        case "Stampamte":
+                            response = `Stampante già accesa`;
+                        break; 
+                    }
+                }
+                else{
+                    switch(JSON.parse(ToControl)){
+                        case "Led":
+                            response = `Ho acceso i led`;
+                        break;
+                        
+                        case "Stereo":
+                            response = `Ho acceso lo stereo`;
+                        break;
+
+                        case "Monitor":
+                            response = `Ho acceso i monitor`;
+                        break;
+
+                        case "Computer":
+                            response = `Ho acceso il computer`;
+                        break;
+
+                        case "Stampamte":
+                            response = `Ho acceso la stampante`;
+                        break; 
+                    }
                 }
             }
             else if (JSON.parse(ToDo) == "Spegni"){
-                switch(JSON.parse(ToControl)){
-                    case "Led":
-                        response = `Ho spento i led`;
-                    break;
-                    
-                    case "Stereo":
-                        response = `Ho spento lo stereo`;
-                    break;
+                if(ReleStat[ToControl]){
+                    switch(JSON.parse(ToControl)){
+                        case "Led":
+                            response = `Ho spento i led`;
+                        break;
+                        
+                        case "Stereo":
+                            response = `Ho spento lo stereo`;
+                        break;
 
-                    case "Monitor":
-                        response = `Ho spento i monitor`;
-                    break;
+                        case "Monitor":
+                            response = `Ho spento i monitor`;
+                        break;
 
-                    case "Computer":
-                        response = `Ho spento il computer`;
-                    break;
+                        case "Computer":
+                            response = `Ho spento il computer`;
+                        break;
 
-                    case "Stampamte":
-                        response = `Ho spento la stampante`;
-                    break; 
+                        case "Stampamte":
+                            response = `Ho spento la stampante`;
+                        break; 
+                    }
+                }
+                else{
+                    switch(JSON.parse(ToControl)){
+                        case "Led":
+                            response = `Led già spenti`;
+                        break;
+                        
+                        case "Stereo":
+                            response = `Stereo già spento`;
+                        break;
+
+                        case "Monitor":
+                            response = `Monitor già spenti`;
+                        break;
+
+                        case "Computer":
+                            response = `Computer già spento`;
+                        break;
+
+                        case "Stampamte":
+                            response = `Stampante già spenta`;
+                        break; 
+                    }
                 }
             }
             res.send(JSON.stringify({ "fulfillmentText": response}));
