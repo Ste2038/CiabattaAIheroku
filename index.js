@@ -84,7 +84,7 @@ app.post('/', function(req, res){
                     break; 
                 }
             }
-            res.send(JSON.stringify({"speech": response, "displayText": response}));
+            res.send(JSON.stringify({ "fulfillmentText": response}));
         break;
         
         case "Modalita":
