@@ -12,6 +12,11 @@ let Intent,
     ToDo,
     ToControl;
 
+let ReleStat = [8];
+for (let i = 0; i < 8; i++){
+    ReleStat[i] = false;
+}
+
 app.use(bodyParser.json());
 app.use(basicAuth({
   users: { 'admin': 'secret'}
@@ -118,8 +123,17 @@ http.listen(port, function(){
 
     io.on('connection', function(socket){
         console.log('User Connected!');
+        for (let i = 0; i < 8; i++){
+            ReleStat[i] = false;
+        }
 
-        socket.on('ciao', function(msgObj){
+        //disegno dell'array di stato
+        console.log('_________________________________________________________________');
+        console.log('|   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |');
+        console.log('| ' + ReleStat[0] +' | ' + ReleStat[1] + ' | ' + ReleStat[2] + ' | ' + ReleStat[3] + ' | ' + ReleStat[4] + ' | ' + ReleStat[5] + ' | ' + ReleStat[6] + ' | '+ ReleStat[7] + ' |');
+        console.log('|_______________________________________________________________|');
+
+        socket.on('changeReleNum', function(msgObj){
             console.log(msgObj);
         });
     })
