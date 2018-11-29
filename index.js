@@ -26,14 +26,14 @@ app.post('/', function(req, res){
     console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
 
     Intent = JSON.parse(JSON.stringify(req.body.queryResult.intent.displayName));
-    console.log("Intent" + Intent);
+    console.log("Intent: " + Intent);
 
     switch (Intent){
         case "Controllo":
             ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
             ToControl = JSON.stringify(req.body.queryResult.parameters.ToControl);
-            console.log("ToDo" + ToDo);
-            console.log("ToControl" + ToControl);
+            console.log("ToDo: " + ToDo);
+            console.log("ToControl: " + ToControl);
             
             io.emit('ToControl', ToControl);
             io.emit('ToDo', ToDo);
@@ -94,7 +94,7 @@ app.post('/', function(req, res){
             io.emit('Modalita', Modalita);
 
             response = `Modalità ${JSON.parse(Modalita)} impostata`;
-            res.send(JSON.stringify({ "speech": response, "displayText": response}));
+            res.send(JSON.stringify({ "fulfillmentText": response}));
         break;
 
         case "Led":
