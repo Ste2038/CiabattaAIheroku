@@ -150,6 +150,12 @@ http.listen(port, function(){
             else{
                 ReleStat[_ChangeReleNum] = false;
             }
+
+            //disegno dell'array di stato
+            console.log('_________________________________________________________________');
+            console.log('|   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |');
+            console.log('| ' + ReleStat[0] +' | ' + ReleStat[1] + ' | ' + ReleStat[2] + ' | ' + ReleStat[3] + ' | ' + ReleStat[4] + ' | ' + ReleStat[5] + ' | ' + ReleStat[6] + ' | '+ ReleStat[7] + ' |');
+            console.log('|_______________________________________________________________|');
         });
     })
 });
