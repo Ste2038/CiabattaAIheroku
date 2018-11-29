@@ -11,7 +11,6 @@ let Intent,
     ToDo,
     ToControl;
 
-
 app.use(bodyParser.json());
 app.use(basicAuth({
   users: { 'admin': 'secret'}
@@ -23,12 +22,16 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
     console.log('POST / ', JSON.stringify(req.body));
-    console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
-
+    
     Intent = JSON.parse(JSON.stringify(req.body.queryResult.intent.displayName));
     console.log("Intent: " + Intent);
+    console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
 
     switch (Intent){
+        case "Default Welcome Intent":
+        res.send(JSON.stringify({ "fulfillmentText": 'ciao'}));
+        break;
+
         case "Controllo":
             ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
             ToControl = JSON.stringify(req.body.queryResult.parameters.ToControl);
@@ -49,7 +52,7 @@ app.post('/', function(req, res){
                     break;
 
                     case "Monitor":
-                        response = `Ho acceso i Monitor`;
+                        response = `Ho acceso i monitor`;
                     break;
 
                     case "Computer":
@@ -72,7 +75,7 @@ app.post('/', function(req, res){
                     break;
 
                     case "Monitor":
-                        response = `Ho spento i Monitor`;
+                        response = `Ho spento i monitor`;
                     break;
 
                     case "Computer":
@@ -89,7 +92,7 @@ app.post('/', function(req, res){
         
         case "Modalita":
             Modalita = JSON.stringify(req.body.queryResult.parameters.Modalita);
-            console.log(Modalita);
+            console.log("Modalità :" + Modalita);
 
             io.emit('Modalita', Modalita);
 
@@ -99,7 +102,7 @@ app.post('/', function(req, res){
 
         case "Led":
             Color = JSON.stringify(req.body.queryResult.parameters.Color);
-            console.log(Color);
+            console.log("Color: " + Color);
 
             io.emit('Color', Color);
 
