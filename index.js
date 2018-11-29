@@ -112,6 +112,10 @@ app.post('/', function(req, res){
     }
 });
 
+io.on('ciao', function(_Req){
+    console.log(_Req);
+});
+
 http.listen(process.env.PORT || 3000, function(){
     console.log('listening');
 });
