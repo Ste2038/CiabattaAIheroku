@@ -104,7 +104,7 @@ app.post('/', function(req, res){
             io.emit('Color', Color);
 
             response = `Colore ${JSON.parse(Color)} impostato`;
-            res.send(JSON.stringify({ "speech": response, "displayText": response}));
+            res.send(JSON.stringify({ "fulfillmentText": response}));
         break;
     }
 });
