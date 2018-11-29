@@ -10,7 +10,9 @@ let Intent,
     Color,
     Modalita,
     ToDo,
-    ToControl;
+    ToControl,
+    _ChangeReleStatus,
+    _ChangeReleNum;
 
 let ReleStat = [8];
 for (let i = 0; i < 8; i++){
@@ -134,11 +136,20 @@ http.listen(port, function(){
         console.log('|_______________________________________________________________|');
 
         socket.on('changeReleNum', function(msgObj){
-            console.log("changeReleNum: " + msgObj);
+            _ChangeReleNum = msgObj;
+            console.log("changeReleNum: " + _ChangeReleNum);
         });
 
         socket.on('changeRelStatus', function(msgObj){
-            console.log("changeRelStatus: " + msgObj);
+            _ChangeReleStatus = msgObj
+            console.log("changeRelStatus: " + _ChangeReleStatus);
+
+            if (_ChangeReleStatus == 1){
+                ReleStat[_ChangeReleNum] = true;
+            }
+            else{
+                ReleStat[_ChangeReleNum] = false;
+            }
         });
     })
 });
