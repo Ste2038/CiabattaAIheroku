@@ -12,7 +12,8 @@ let Intent,
     ToDo,
     ToControl,
     _ChangeReleStatus,
-    _ChangeReleNum;
+    _ChangeReleNum,
+    ReleConfig;
 
 let ReleStat = [8];
 for (let i = 0; i < 8; i++){
@@ -188,6 +189,11 @@ http.listen(port, function(){
         console.log('| ' + ReleStat[0] +' | ' + ReleStat[1] + ' | ' + ReleStat[2] + ' | ' + ReleStat[3] + ' | ' + ReleStat[4] + ' | ' + ReleStat[5] + ' | ' + ReleStat[6] + ' | '+ ReleStat[7] + ' |');
         console.log('|_______________________________________________________________|');
 
+        socket.on('start', function(msgObj){
+            ReleConfig = msgObj;
+            console.log(ReleConfig);
+        });
+        
         socket.on('changeReleNum', function(msgObj){
             _ChangeReleNum = msgObj;
             console.log("changeReleNum: " + _ChangeReleNum);
