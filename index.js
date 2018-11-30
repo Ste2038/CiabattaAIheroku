@@ -201,7 +201,7 @@ http.listen(port, function(){
         console.log('|_______________________________________________________________|');
 
         socket.on('start', function(msgObj){
-            ReleConfig = msgObj;
+            ReleConfig = JSON.parse(msgObj);
             console.log("ReleConfig: " + ReleConfig);
         });
         
