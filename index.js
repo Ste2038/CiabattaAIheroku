@@ -50,7 +50,7 @@ app.post('/', function(req, res){
 
             for (let i = 0; i < ReleConfig.length; i++){
                 ReleData = ReleConfig[i];
-                if(JSON.parse(ToControl) == ReleData[0]){
+                if(JSON.parse(ToControlName) == ReleData[0]){
                     ToControlNum = ReleData[1];
                     //ModToControl = ReleData[2];
                 }
@@ -113,7 +113,7 @@ app.post('/', function(req, res){
                 }
             }
             else if (JSON.parse(ToDo) == "Spegni"){
-                if(ReleStat[ToControlName] == true){
+                if(ReleStat[ToControlNum] == true){
                     switch(JSON.parse(ToControlName)){
                         case "Led":
                             response = `Ho spento i led`;
