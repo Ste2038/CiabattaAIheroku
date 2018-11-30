@@ -11,6 +11,7 @@ let Intent,
     Modalita,
     ToDo,
     ToControlName,
+    ToControlNum,
     _ChangeReleStatus,
     _ChangeReleNum,
     ReleConfig;
@@ -28,7 +29,7 @@ app.use(basicAuth({
 }));
 
 app.get('/', function(req, res){
-    res.sendFile('/web/Home.html');
+    res.sendFile(__dirname + '/web/Home.html');
 });
 
 app.post('/', function(req, res){
@@ -46,16 +47,26 @@ app.post('/', function(req, res){
         case "Controllo":
             ToDo = JSON.stringify(req.body.queryResult.parameters.ToDo);
             ToControlName = JSON.stringify(req.body.queryResult.parameters.ToControl);
+
+            for (let i = 0; i < ReleConfig.length; i++){
+                ReleData = ReleConfig[i];
+                if(JSON.parse(ToControl) == ReleData[0]){
+                    ToControlNum = ReleData[1];
+                    //ModToControl = ReleData[2];
+                }
+            }
+
             console.log("ToDo: " + ToDo);
             console.log("ToControlName: " + ToControlName);
-            
-            io.emit('ToControl', ToControl);
+            console.log("ToControlNum: " + ToControlNum);
+
+            io.emit('ToControl', ToControlName);
             io.emit('ToDo', ToDo);
 
             if (JSON.parse(ToDo) == "Accendi"){
-                console.log(ToControl);
-                if (ReleStat[ToControl] == true){
-                    switch(JSON.parse(ToControl)){
+                console.log(ToControlName);
+                if (ReleStat[ToControlNum] == true){
+                    switch(JSON.parse(ToControlName)){
                         case "Led":
                             response = `Led già accesi`;
                         break;
@@ -78,7 +89,7 @@ app.post('/', function(req, res){
                     }
                 }
                 else{
-                    switch(JSON.parse(ToControl)){
+                    switch(JSON.parse(ToControlName)){
                         case "Led":
                             response = `Ho acceso i led`;
                         break;
@@ -102,8 +113,8 @@ app.post('/', function(req, res){
                 }
             }
             else if (JSON.parse(ToDo) == "Spegni"){
-                if(ReleStat[ToControl] == true){
-                    switch(JSON.parse(ToControl)){
+                if(ReleStat[ToControlName] == true){
+                    switch(JSON.parse(ToControlName)){
                         case "Led":
                             response = `Ho spento i led`;
                         break;
@@ -126,7 +137,7 @@ app.post('/', function(req, res){
                     }
                 }
                 else{
-                    switch(JSON.parse(ToControl)){
+                    switch(JSON.parse(ToControlName)){
                         case "Led":
                             response = `Led già spenti`;
                         break;
