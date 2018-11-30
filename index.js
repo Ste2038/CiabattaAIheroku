@@ -19,13 +19,15 @@ for (let i = 0; i < 8; i++){
     ReleStat[i] = false;
 }
 
+app.set('view engine','ejs');
+
 app.use(bodyParser.json());
 app.use(basicAuth({
   users: { 'admin': 'secret'}
 }));
 
 app.get('/', function(req, res){
-    res.send('ciao');
+    res.sendFile(/web/Home.html);
 });
 
 app.post('/', function(req, res){
