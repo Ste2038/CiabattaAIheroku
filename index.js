@@ -235,6 +235,7 @@ http.listen(port, function(){
               if (ReleStat[i]){
                 stringStati += ' ';
               }
+              stringStati += ' | '
             }
             //disegno dell'array di stato
             console.log('_________________________________________________________________');
