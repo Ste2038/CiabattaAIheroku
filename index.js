@@ -24,9 +24,9 @@ for (let i = 0; i < 8; i++){
 app.set('view engine','ejs');
 
 app.use(bodyParser.json());
-app.use(basicAuth({
+/*app.use(basicAuth({
   users: { 'admin': 'secret'}
-}));
+}));*/
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/web/Home.html');
