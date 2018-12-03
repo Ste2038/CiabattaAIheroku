@@ -34,7 +34,7 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
     console.log('POST / ', JSON.stringify(req.body));
-    
+
     Intent = JSON.parse(JSON.stringify(req.body.queryResult.intent.displayName));
     console.log("Intent: " + Intent);
     console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
@@ -69,7 +69,7 @@ app.post('/', function(req, res){
                         case "Led":
                             response = `Led già accesi`;
                         break;
-                        
+
                         case "Stereo":
                             response = `Stereo già acceso`;
                         break;
@@ -84,7 +84,7 @@ app.post('/', function(req, res){
 
                         case "Stampamte":
                             response = `Stampante già accesa`;
-                        break; 
+                        break;
                     }
                 }
                 else{
@@ -92,7 +92,7 @@ app.post('/', function(req, res){
                         case "Led":
                             response = `Ho acceso i led`;
                         break;
-                        
+
                         case "Stereo":
                             response = `Ho acceso lo stereo`;
                         break;
@@ -107,7 +107,7 @@ app.post('/', function(req, res){
 
                         case "Stampamte":
                             response = `Ho acceso la stampante`;
-                        break; 
+                        break;
                     }
                 }
             }
@@ -117,7 +117,7 @@ app.post('/', function(req, res){
                         case "Led":
                             response = `Ho spento i led`;
                         break;
-                        
+
                         case "Stereo":
                             response = `Ho spento lo stereo`;
                         break;
@@ -132,15 +132,17 @@ app.post('/', function(req, res){
 
                         case "Stampamte":
                             response = `Ho spento la stampante`;
-                        break; 
-                    }
+                        break;
+                    }rere
+
+
                 }
                 else{
                     switch(JSON.parse(ToControlName)){
                         case "Led":
                             response = `Led già spenti`;
                         break;
-                        
+
                         case "Stereo":
                             response = `Stereo già spento`;
                         break;
@@ -155,13 +157,13 @@ app.post('/', function(req, res){
 
                         case "Stampamte":
                             response = `Stampante già spenta`;
-                        break; 
+                        break;
                     }
                 }
             }
             res.send(JSON.stringify({ "fulfillmentText": response}));
         break;
-        
+
         case "Modalita":
             Modalita = JSON.stringify(req.body.queryResult.parameters.Modalita);
             console.log("Modalità :" + Modalita);
@@ -203,7 +205,7 @@ http.listen(port, function(){
             ReleConfig = JSON.parse(msgObj);
             console.log("ReleConfig: " + ReleConfig);
         });
-        
+
         socket.on('changeReleNum', function(msgObj){
             _ChangeReleNum = msgObj;
             console.log("changeReleNum: " + _ChangeReleNum);
