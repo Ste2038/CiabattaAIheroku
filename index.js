@@ -195,10 +195,17 @@ http.listen(port, function(){
             ReleStat[i] = false;
         }
 
+        let stringStati = '| ';
+        for(let i = 0; i < ReleStat.length; i++){
+          stringStati += ReleStat[i];
+          if (ReleStat[i]){
+            stringStati += ' ';
+          }
+        }
         //disegno dell'array di stato
         console.log('_________________________________________________________________');
         console.log('|   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |');
-        console.log('| ' + ReleStat[0] +' | ' + ReleStat[1] + ' | ' + ReleStat[2] + ' | ' + ReleStat[3] + ' | ' + ReleStat[4] + ' | ' + ReleStat[5] + ' | ' + ReleStat[6] + ' | '+ ReleStat[7] + ' |');
+        console.log(stringStati);
         console.log('|_______________________________________________________________|');
 
         socket.on('start', function(msgObj){
@@ -222,11 +229,19 @@ http.listen(port, function(){
                 ReleStat[_ChangeReleNum] = false;
             }
 
+            let stringStati = '| ';
+            for(let i = 0; i < ReleStat.length; i++){
+              stringStati += ReleStat[i];
+              if (ReleStat[i]){
+                stringStati += ' ';
+              }
+            }
             //disegno dell'array di stato
             console.log('_________________________________________________________________');
             console.log('|   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |');
-            console.log('| ' + ReleStat[0] +' | ' + ReleStat[1] + ' | ' + ReleStat[2] + ' | ' + ReleStat[3] + ' | ' + ReleStat[4] + ' | ' + ReleStat[5] + ' | ' + ReleStat[6] + ' | '+ ReleStat[7] + ' |');
+            console.log(stringStati);
             console.log('|_______________________________________________________________|');
+
         });
     })
 });
