@@ -230,7 +230,7 @@ http.listen(port, function(){
             }
 
             let stringStati = '| ';
-            for(let i = 0; i < ReleStat.length; i++){
+            for(let i = 0; i < 8; i++){
               stringStati += ReleStat[i];
               if (ReleStat[i]){
                 stringStati += ' ';
