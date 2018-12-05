@@ -6,36 +6,39 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 //Variabili Entities
-let Intent,
-    Color,
-    Modalita,
-    ToDo,
-    ToControlName,
-    ToControlNum,
+let Intent, //Variabile per il contenimento dell'intent usato
+    Color, //Variabile usata per il colore scelto (Intent: Color)
+    Modalita, //Variabile usata per la modalita scelta (Intent: Modalità)
+    ToDo, //variabile usata per capire come va modificato l'oggetto (Intent: Controllo)
+    ToControlName, //variabile usata per l'oggetto a cui va modificato lo stato (Intent: Controllo)
+    ToControlNum, //variabile usata per contenere il numero di Rele dell'oggetto preso da file
     _ChangeReleStatus,
     _ChangeReleNum,
-    ReleConfig;
+    ReleConfig; //variabile che contiene il contenuto del file proveniente da Charlie
 
+//Variabile che contiene lo stato dei rele e li inizializza a falsi.
 let ReleStat = [8];
 for (let i = 0; i < 8; i++){
     ReleStat[i] = false;
 }
 
+//impostazioni per il funzionamento del server
 app.set('view engine','ejs');
-
 app.use(bodyParser.json());
 /*app.use(basicAuth({
   users: { 'admin': 'secret'}
 }));*/
 
+//Gestione richiesta tipo GET
 app.get('/', function(req, res){
     //res.sendFile(__dirname + '/index.html');
 });
 
+//Gestione richiesta tipo POST
 app.post('/', function(req, res){
-    console.log('POST / ', JSON.stringify(req.body));
-
+    //Recupero di tutti i parametri necessari e stampo a schermo
     Intent = JSON.parse(JSON.stringify(req.body.queryResult.intent.displayName));
+    console.log('POST / ', JSON.stringify(req.body));
     console.log("Intent: " + Intent);
     console.log('Parametri: ' + JSON.stringify(req.body.queryResult.parameters));
 
@@ -186,6 +189,7 @@ app.post('/', function(req, res){
     }
 });
 
+//Ascolto sulla porta socket
 http.listen(port, function(){
     console.log('Listening on port ' + port);
 
