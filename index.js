@@ -136,9 +136,7 @@ app.post('/', function(req, res){
                         case "Stampamte":
                             response = `Ho spento la stampante`;
                         break;
-                    }rere
-
-
+                    }
                 }
                 else{
                     switch(JSON.parse(ToControlName)){
