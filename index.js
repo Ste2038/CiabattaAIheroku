@@ -52,7 +52,6 @@ app.post('/', function(req, res){
             ToControlName = JSON.stringify(req.body.queryResult.parameters.ToControl);
 
             for (let i = 0; i < 8; i++){
-                console.log(ReleConfig[i]);
                 ReleData = ReleConfig[i];
 
                 if(JSON.parse(ToControlName) == ReleData[0]){
