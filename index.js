@@ -52,8 +52,9 @@ app.post('/', function(req, res){
             ToControlName = JSON.stringify(req.body.queryResult.parameters.ToControl);
 
             for (let i = 0; i < 8; i++){
+                console.log(ReleConfig[i]);
                 ReleData = ReleConfig[i];
-                console.log(ReleData);
+
                 if(JSON.parse(ToControlName) == ReleData[0]){
                     ToControlNum = ReleData[1];
                     //ModToControl = ReleData[2];
