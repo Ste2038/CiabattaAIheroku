@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "express-basic-auth": "^1.1.4",
-    "socket.io": "^1.7.4"
+    "socket.io": "^2.4.0"
   },
   "author": "Ste2038",
   "license": "ISC"
